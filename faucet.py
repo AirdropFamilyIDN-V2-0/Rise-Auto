@@ -2,7 +2,7 @@ from web3 import Web3
 from seleniumbase import Driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC    
+from selenium.webdriver.support import expected_conditions as EC
 import requests, time
 
 

@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "rise-auto"
+version = "0.1.0"
+description = ""
+authors = ["Airdrop Family IDN"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.10,<4"
+web3 = "6.2.0"
+eth-account = ">=0.13.7,<0.14.0"
+requests = ">=2.32.3,<3.0.0"
+rich = ">=14.0.0,<15.0.0"
+termcolor = ">=3.1.0,<4.0.0"
+setuptools = "^80.9.0"
+seleniumbase = "^4.39.1"
+selenium = "^4.33.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
