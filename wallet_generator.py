@@ -33,6 +33,12 @@ def auto_save_files(wallets):
 
     print("✅ Private keys saved to: pkevm.txt")
 
+    with open("addressevm.txt", 'w', encoding='utf-8') as txtfile:
+        for wallet in wallets:
+            txtfile.write(f"{wallet['address']}\n")
+
+    print("✅ Addresses saved to: addressevm.txt")
+
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     json_filename = f"wallets_batch_complete_{timestamp}.json"
 
@@ -45,6 +51,7 @@ def auto_save_files(wallets):
         },
         'files': {
             'private_keys_file': 'pkevm.txt',
+            'addresses_file': 'addressevm.txt',
             'complete_data_file': json_filename
         },
         'wallets': wallets
@@ -57,6 +64,7 @@ def auto_save_files(wallets):
 
     return {
         'private_keys_file': 'pkevm.txt',
+        'addresses_file': 'addressevm.txt',
         'complete_file': json_filename
     }
 
@@ -90,6 +98,7 @@ if __name__ == "__main__":
         print(f"\n🎉 COMPLETE!")
         print(f"📁 Files created:")
         print(f"  🔑 Private keys: {saved_files['private_keys_file']}")
+        print(f"  📬 Addresses:    {saved_files['addresses_file']}")
         print(f"  📋 Complete data: {saved_files['complete_file']}")
         print(f"🔢 Total wallets generated: {len(wallets)}")
 
