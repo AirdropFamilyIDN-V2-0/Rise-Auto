@@ -16,8 +16,8 @@ WETH = Web3.to_checksum_address("0x4200000000000000000000000000000000000006")
 USDC = Web3.to_checksum_address("0x8A93d247134d91e0de6f96547cB0204e5BE8e5D8")
 RISE = Web3.to_checksum_address("0xd6e1afe5cA8D00A2EFC01B89997abE2De47fdfAf")
 DODO_APPROVE_TO = Web3.to_checksum_address("0x5eC9BEaCe4a0f46F77945D54511e2b454cb8F38E")
-SPENDER = Web3.to_checksum_address("0x6a9B38F1E20B7e048CE21b06f6e5eFe9d8f4e3e2") 
-ROUTER_ADDRESS = DODO_APPROVE_TO  
+SPENDER = Web3.to_checksum_address("0x6a9B38F1E20B7e048CE21b06f6e5eFe9d8f4e3e2")
+ROUTER_ADDRESS = DODO_APPROVE_TO
 RISE_TOKEN = Web3.to_checksum_address("0x6a9B38F1E20B7e048CE21b06f6e5eFe9d8f4e3e2")
 USDC_TOKEN = Web3.to_checksum_address("0x3d53b844C62Ab07b16aa1584854acD16d2cD6a29")
 
@@ -97,10 +97,10 @@ def tampil_banner():
     banner = """[bold cyan]
 ████████╗███████╗███████╗████████╗███╗   ██╗███████╗████████╗
 ╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝████╗  ██║██╔════╝╚══██╔══╝
-   ██║   █████╗  ███████╗   ██║   ██╔██╗ ██║█████╗     ██║   
-   ██║   ██╔══╝  ╚════██║   ██║   ██║╚██╗██║██╔══╝     ██║   
-   ██║   ███████╗███████║   ██║   ██║ ╚████║███████╗   ██║   
-   ╚═╝   ╚══════╝╚══════╝   ╚═╝   ╚═╝  ╚═══╝╚══════╝   ╚═╝   
+   ██║   █████╗  ███████╗   ██║   ██╔██╗ ██║█████╗     ██║
+   ██║   ██╔══╝  ╚════██║   ██║   ██║╚██╗██║██╔══╝     ██║
+   ██║   ███████╗███████║   ██║   ██║ ╚████║███████╗   ██║
+   ╚═╝   ╚══════╝╚══════╝   ╚═╝   ╚═╝  ╚═══╝╚══════╝   ╚═╝
 [/bold cyan]"""
     console.print(Panel.fit(banner, title="[bold yellow]Testnet Tools - RISE TESTNET[/bold yellow]", subtitle="BY ADFMIDN TEAM"))
 def load_wallets():
@@ -111,7 +111,7 @@ def approve_pol(w3, wallet_pk, token_address, spender, amount):
     account = Account.from_key(wallet_pk)
     wallet_address = account.address
     token = w3.eth.contract(address=Web3.to_checksum_address(token_address), abi=ERC20_ABI)
-    
+
     try:
         symbol = token.functions.symbol().call()
     except:
@@ -132,7 +132,7 @@ def approve_pol(w3, wallet_pk, token_address, spender, amount):
         })
 
         signed_tx = w3.eth.account.sign_transaction(tx, wallet_pk)
-        tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+        tx_hash = w3.eth.send_raw_transaction(signed_tx.raw_transaction)
         print(f"✅ Approve {symbol} sukses! Tx: https://explorer.testnet.riselabs.xyz/tx/{w3.to_hex(tx_hash)}")
     except Exception as e:
         print(f"❌ Gagal approve {symbol}: {e}")
@@ -149,10 +149,10 @@ def auto_add_liquidity(w3, wallet_pk, token_a, token_b, amount_a, amount_b, rout
             Web3.to_checksum_address(token_b),
             amount_a,
             amount_b,
-            0,  
-            0,  
+            0,
+            0,
             wallet_address,
-            int(time.time()) + 1000  
+            int(time.time()) + 1000
         ).build_transaction({
             'from': wallet_address,
             'nonce': w3.eth.get_transaction_count(wallet_address),
@@ -162,7 +162,7 @@ def auto_add_liquidity(w3, wallet_pk, token_a, token_b, amount_a, amount_b, rout
         })
 
         signed_tx = w3.eth.account.sign_transaction(tx, wallet_pk)
-        tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
+        tx_hash = w3.eth.send_raw_transaction(signed_tx.raw_transaction)
         print(f"✅ Add liquidity sukses! Tx: https://explorer.testnet.riselabs.xyz/tx/{w3.to_hex(tx_hash)}")
     except Exception as e:
         print(f"❌ Gagal add liquidity: {e}")
@@ -258,7 +258,7 @@ def wrap_eth_to_weth(w3, wallet_pk, amount):
         'chainId': CHAIN_ID
     })
     signed = w3.eth.account.sign_transaction(tx, wallet_pk)
-    tx_hash = w3.eth.send_raw_transaction(signed.rawTransaction)
+    tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
     print(f"✅ Wrap sukses! Tx: https://explorer.testnet.riselabs.xyz/tx/{w3.to_hex(tx_hash)}")
 
 def approve_token(w3, wallet_pk, token_address, amount):
@@ -273,7 +273,7 @@ def approve_token(w3, wallet_pk, token_address, amount):
         'chainId': CHAIN_ID
     })
     signed = w3.eth.account.sign_transaction(tx, wallet_pk)
-    tx_hash = w3.eth.send_raw_transaction(signed.rawTransaction)
+    tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
     print(f"✅ Approve sukses! Tx: https://explorer.testnet.riselabs.xyz/tx/{w3.to_hex(tx_hash)}")
 
 def auto_swap(w3, wallet_pk, amount):
@@ -304,7 +304,7 @@ def auto_swap(w3, wallet_pk, amount):
         "chainId": CHAIN_ID
     }
     signed = w3.eth.account.sign_transaction(tx, wallet_pk)
-    tx_hash = w3.eth.send_raw_transaction(signed.rawTransaction)
+    tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
     print(f"✅ Swap sukses! Tx: https://explorer.testnet.riselabs.xyz/tx/{w3.to_hex(tx_hash)}")
 
 def swap_rise_to_usdc(w3, wallet_pk, amount):
@@ -335,7 +335,7 @@ def swap_rise_to_usdc(w3, wallet_pk, amount):
         "chainId": CHAIN_ID
     }
     signed = w3.eth.account.sign_transaction(tx, wallet_pk)
-    tx_hash = w3.eth.send_raw_transaction(signed.rawTransaction)
+    tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
     print(f"✅ Swap sukses! Tx: https://explorer.testnet.riselabs.xyz/tx/{w3.to_hex(tx_hash)}")
 
 
@@ -359,7 +359,7 @@ def deploy_nft(w3, wallet_pk, abi=NFT_ABI, bytecode=NFT_BYTECODE):
             'chainId': CHAIN_ID
         })
         signed = w3.eth.account.sign_transaction(build_txn, wallet_pk)
-        tx_hash = w3.eth.send_raw_transaction(signed.rawTransaction)
+        tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
         print(f"⏳ Menunggu konfirmasi deploy...")
         receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
         contract_address = receipt.contractAddress
@@ -380,7 +380,7 @@ def deploy_nft(w3, wallet_pk, abi=NFT_ABI, bytecode=NFT_BYTECODE):
             'chainId': CHAIN_ID
         })
         signed = w3.eth.account.sign_transaction(mint_tx, wallet_pk)
-        tx_hash = w3.eth.send_raw_transaction(signed.rawTransaction)
+        tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
         print(f"✅ Mint sukses! Tx: https://explorer.testnet.riselabs.xyz/tx/{w3.to_hex(tx_hash)}")
     except Exception as e:
         print(f"❌ Gagal mint NFT: {e}")
@@ -401,9 +401,9 @@ def main():
                 process_wallet(wallet_pk)
             except Exception as e:
                 print(f"⚠️ Error saat memproses wallet: {e}")
-        
+
         print("⏸️ Semua wallet telah diproses Dilay 24 Abad Sampai Tea Listing ")
-        time.sleep(86400) 
+        time.sleep(86400)
 
 if __name__ == "__main__":
     main()

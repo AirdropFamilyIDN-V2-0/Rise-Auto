@@ -63,7 +63,7 @@
 | **4. Install Poetry** | Jika belum punya, install ```pip install poetry``` atau ```curl -sSL https://install.python-poetry.org | python3 -```, setelah itu set PATH sesuai instruksi. Jika belum pernah memakai poetry maka config venv ```poetry config virtualenvs.create true``` dan ```poetry config virtualenvs.in-project true``` |
 | **5. Install dependencies** | Jalankan ```poetry install``` |
 | **6. Siapkan file private key** | Buat file `pkevm.txt` di folder project. Isi dengan private key wallet, satu per baris:```0x123abc456def7890abcdef1234567890abcdef1234567890abcdef1234567890<br>0xabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcdefabcd```<br>**Jangan bagikan file ini ke siapapun!** |
-| **7. Jalankan skrip utama** | Jalankan otomatisasi dengan:<br>```poetry run main.py``` |
+| **7. Jalankan skrip utama** | Jalankan otomatisasi dengan:<br>```poetry run python main.py``` |
 | **8. Pantau output** | Terminal akan menampilkan proses dan status transaksi secara real-time dengan warna dan info lengkap. |
 
 
@@ -93,17 +93,15 @@ Rise-Auto/
 
 ## 🌐 Join Komunitas
 
-📢 Gabung ke komunitas kami untuk update terbaru, diskusi, dan support:  
+📢 Gabung ke komunitas kami untuk update terbaru, diskusi, dan support:
 👉 [https://t.me/AirdropFamilyIDN](https://t.me/AirdropFamilyIDN)
 
-Jika kamu ingin akses ke lebih banyak tools eksklusif, silakan join **membership ADFMIDN** 💎  
+Jika kamu ingin akses ke lebih banyak tools eksklusif, silakan join **membership ADFMIDN** 💎
 👉 Dapatkan fitur premium dan alat otomatisasi terbaru hanya untuk member!
 
 
 
 ## 📄 Lisensi
 
-Repositori ini bersifat open-source dan bebas digunakan.  
+Repositori ini bersifat open-source dan bebas digunakan.
 Gunakan dengan bijak untuk eksplorasi dan pembelajaran.
-
-
