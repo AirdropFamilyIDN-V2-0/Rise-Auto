@@ -15,6 +15,7 @@ rich = ">=14.0.0,<15.0.0"
 termcolor = ">=3.1.0,<4.0.0"
 setuptools = "^80.9.0"
 seleniumbase = "^4.39.1"
+selenium = "^4.33.0"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
